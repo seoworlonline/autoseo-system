@@ -1,16 +1,22 @@
-export const metadata = {
-  title: 'AutoSEO - Dashboard',
-  description: 'AI-powered website generation',
-}
+'use client'
+
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { useState } from 'react'
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const [queryClient] = useState(() => new QueryClient())
+
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      </body>
     </html>
   )
 }
